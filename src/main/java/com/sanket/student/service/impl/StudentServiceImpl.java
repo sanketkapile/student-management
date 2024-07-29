@@ -58,13 +58,7 @@ public class StudentServiceImpl implements StudentService {
 	@Override
 	public void deleteAccount(Long id) {
 		Student student = studentRepository.findById(id).orElseThrow(() -> new RuntimeException("Student Record Not Found"));
-		StudentBackup studentBackup = new StudentBackup();
-		studentBackup.setId(student.getId());
-		studentBackup.setIsStudent(student.getIsStudent());
-		studentBackup.setStudentName(student.getStudentName());
-		studentBackup.setStudyYear(student.getStudyYear());
 		studentRepository.delete(student);
-		studentBackupRepository.save(studentBackup);
 	}
 
 }
